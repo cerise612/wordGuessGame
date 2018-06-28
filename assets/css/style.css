@@ -1,0 +1,96 @@
+/* background */
+body{
+    background-image: url(../images/dogs.JPG);
+    width: auto;
+    height: auto;
+    background-repeat: no-repeat;
+}
+
+/* header */
+h1{
+    text-align: center;
+    margin: 20px;
+    font-family: 'Emilys Candy', cursive;
+    color: white;
+    text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
+    font-weight: bold;
+}
+
+/* left side */
+#instructions{
+    float: left;
+    /* border-image: url(..\..\..\..\..\images\pretty-ideas-heart-border-black-and-white-valentines-neuer-monoberlin-co.png); */
+}
+
+#answerArray{
+    font-family: 'Baloo Chettan', cursive;
+    color: white;
+    text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
+
+p{
+    font-family: 'Baloo Chettan', cursive;
+    color: white;
+    text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
+
+h2{
+    text-align: center;
+    font-family: 'Baloo Chettan', cursive;
+    color: white;
+    text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
+
+h3{
+    font-family: 'Baloo Chettan', cursive;
+    color: white;
+    text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
+
+h4{
+    font-family: 'Baloo Chettan', cursive;
+    color: white;
+    text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
+
+/* right side */
+#gamePlay{
+    float: left;
+}
+
+#guessingWord{
+    padding-top: 200px;
+    font-size: large;
+    font-family: 'Baloo Chettan', cursive;
+    color: white;
+    text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;  
+}
+

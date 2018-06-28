@@ -32,16 +32,16 @@
                 <h2>Press Any Key to Start!</h2>
                 <h3>Press A-Z or  '  to Make a Guess!</h3>
                 <h4>Wins:</h4>
-                <div id="totalWins"/div>
+                <div id="totalWins"></div>
                 <h4>Guesses Remaining:</h4>
-                <div id="remainingGuesses"/div>
+                <div id="remainingGuesses"></div>
                 <h4>Letters Guessed:</h4>
-                <div id="answerArray" /div>
+                <div id="answerArray"></div>
             </div>
             <!-- right side game play -->
             <div class="col-md-6 gameplay-column" id="gamePlay"> 
                 <h4>Current Word</h4>
-                <div id="guessingWord"/div>
+                <div id="guessingWord"></div>
                 <h3>hint: Press the Space Bar</h3>  
             </div>
         </div>
@@ -54,17 +54,16 @@ var words = ["in west philadelphia born and raised", "there's no crying in baseb
     "to infinity and beyond", "stop looking at me swan", "i see dead people", "i totally paused", "you are a sad strange little man and you have my pity", "you do not talk about fight club",
     "what's in the box", "Sell crazy somewhere else we're all stocked up here"]
     console.log("word:" + words)      
-//alphabet array for buttons
-// var alphabetArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
 
 
 var currentWordIndex,                   //current word in the array
-     guessingWord = [],                 //guessing word
+    guessingWord = [],                 //guessing word
     remainingGuesses = 10,              // available gueses
     wins = 0,                           // total wins
     startGame = false,                  // initiate game/restart game
     answerArray = [];                   //letters guessed
-    // finalArray = [];                 //compares answerArray and guessingWord
+   
 
 //select phrase
 randomWord = words[Math.floor(Math.random() * (words.length))];
@@ -79,19 +78,9 @@ var countRandomWord = splitRandomWord.length;
     for (i = 0; i < countRandomWord; i++) {
         guessingWord.push("_")
     }
-        console.log(countRandomWord + "countRandomWord")
-        console.log(guessingWord + "guessingWord")
+    console.log(countRandomWord + "countRandomWord");
+    console.log(guessingWord + "guessingWord");
 
-
-        // //check guessing word against current word
-        // for (var i = 0; i < randomWord.length; i++) {
-        //     guessingWord.push("_");
-        // }
-
-// //send to html page
-// document.getElementById("guessingWord").innerHTML = guessingWord;
-// document.getElementById("remainingGuesses").innerText = remainingGuesses;
-// document.getElementById("answerArray").innerText = answerArray;
 
 
 //  Updates the display on the HTML Page
@@ -100,83 +89,32 @@ function updateDisplay() {
 
  document.onkeyup = function (event) {
 
-// //check guessing word for letters
-// function evaluateGuess(letter) {
-//     // Array to store positions of letters in string
-//     var positions = [];
-//         console.log(evaluateGuess(letter))
-//          // Loop through word finding all instances of guessed letter, store the indicies in an array.
-//         for (var i = 0; i < guessingWord.length; i++) {
-//         if (guessingWord[i] === letter) {
-//         positions.push(i);
-//         }
-//         }}
-                //game loop
-                // if (positions.length <= 0) {
-                //     remainingGuesses--;
-                // } else {
-                //     // Loop through all the indicies and replace the '_' with a letter.
-                //     for (var i = 0; i < positions.length; i++) {
-                //     //         guessingWord[positions[i]] = letter;
-                //         }
-                //     }
-                // };
+
         //user imput
         var userImput = event.key.toLowerCase();
-            console.log(userImput)
-        // guessing
-        // function makeGuess(letter) {
-        // if (remainingGuesses > 0) {
-        // console.log(makeGuess())
-        // }
-        // }
-                // Make sure we didn't use this letter yet
-                // if (answerArray.indexOf(letter) === -1) {
-                //     answerArray.push(letter);
-                //     evaluateGuess(letter);
+        console.log(userImput)
+ 
+        answerArray.push(userImput);
+           
+        console.log("answer array " + answerArray);
+   
+        // game loop
+        if (splitRandomWord.indexOf(userImput) !== -1){ 
+            var index = splitRandomWord.indexOf(userImput);
+            guessingWord[index] = userImput; 
+            console.log(guessingWord + "guessingWord ")
+        } else if (answerArray != guessingWord){
+            remainingGuesses += -1
+        }
+        console.log("remainingGuesses " + remainingGuesses);
 
-            for (var i = 0; i < userImput.length; i++) {
-                answerArray.push(userImput);
-            }
-                console.log(answerArray);
-    // var i = 1;
-    // while (i == userImput){
-    //     answerArray.push(userImput)
-    // }
-            
-            if (answerArray === guessingWord){ 
-                guessingWord.push(userImput); 
-            } else if (answerArray != guessingWord){
-                remainingGuesses += -1
-            }
-                console.log(remainingGuesses);
-        //compare answerArray and guessingWord 
-        // function compare(answerArray,guessingWord){
-        //     const finalArray =[];
-        //     answerArray.forEach((e1)=>guessingWord.forEach((e2)=> 
-        //         {if(e1 === e2){
-        //     // objMap[e1]=objMap[e1]+1||1 ;
-        //     }
-        //     }
-        //     ));
-        //     return finalArray;
-        // }
-        //     console.log(finalArray)
-                // };
 
-                // Display guessed word
-                // var guessingWordText = " ";
-                // for (var i = 0; i < guessingWord.length; i++) {
-                //     guessingWordText += guessingWord[i];
-                // }
-                // console.log(guessingWordText)
-                //
-        document.getElementById("guessingWord").innerText = guessingWord;
-        console.log(guessingWord);
+        document.getElementById("guessingWord").innerHTML = guessingWord.join(" ");
+        console.log("answerArray " + answerArray);
         document.getElementById("remainingGuesses").innerText = remainingGuesses;
-        console.log(remainingGuesses);
-        document.getElementById("answerArray").innerText = answerArray;
-        console.log(answerArray);
+        console.log("remaining guesses" + remainingGuesses);
+        document.getElementById("answerArray").innerText = answerArray.join("-")
+        console.log("answerarray " + answerArray);
 
         // winning the game
         function checkWin() {
@@ -210,6 +148,7 @@ function updateDisplay() {
             }
         }
 }
+
 
 </script>
 

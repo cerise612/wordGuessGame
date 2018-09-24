@@ -5,11 +5,10 @@ body{
     height: auto;
     background-repeat: no-repeat;
 }
-
 /* header */
 h1{
     text-align: center;
-    margin: 20px;
+    margin-top: 20px;
     font-family: 'Emilys Candy', cursive;
     color: white;
     text-shadow:
@@ -18,34 +17,9 @@ h1{
     -2px 2px 0 #000,
     2px 2px 0 #000;
     font-weight: bold;
+    font-size: 65pt;
 }
-
-/* left side */
-#instructions{
-    float: left;
-    /* border-image: url(..\..\..\..\..\images\pretty-ideas-heart-border-black-and-white-valentines-neuer-monoberlin-co.png); */
-}
-
-#answerArray{
-    font-family: 'Baloo Chettan', cursive;
-    color: white;
-    text-shadow:
-    -2px -2px 0 #000,
-    2px -2px 0 #000,
-    -2px 2px 0 #000,
-    2px 2px 0 #000;
-}
-
-p{
-    font-family: 'Baloo Chettan', cursive;
-    color: white;
-    text-shadow:
-    -2px -2px 0 #000,
-    2px -2px 0 #000,
-    -2px 2px 0 #000,
-    2px 2px 0 #000;
-}
-
+/* hint */
 h2{
     text-align: center;
     font-family: 'Baloo Chettan', cursive;
@@ -55,18 +29,12 @@ h2{
     2px -2px 0 #000,
     -2px 2px 0 #000,
     2px 2px 0 #000;
+    margin-top: 3vh;
 }
-
-h3{
-    font-family: 'Baloo Chettan', cursive;
-    color: white;
-    text-shadow:
-    -2px -2px 0 #000,
-    2px -2px 0 #000,
-    -2px 2px 0 #000,
-    2px 2px 0 #000;
+/* game play */
+.game-screen{
+    margin-top: 18vh; 
 }
-
 h4{
     font-family: 'Baloo Chettan', cursive;
     color: white;
@@ -76,21 +44,10 @@ h4{
     -2px 2px 0 #000,
     2px 2px 0 #000;
 }
-
-/* right side */
-#gamePlay{
-    float: left;
+#current{
+    margin-top: 5vh; 
 }
 
-#guessingWord{
-    padding-top: 200px;
-    font-size: large;
-    font-family: 'Baloo Chettan', cursive;
-    color: white;
-    text-shadow:
-    -2px -2px 0 #000,
-    2px -2px 0 #000,
-    -2px 2px 0 #000,
-    2px 2px 0 #000;  
-}
+
+
 

@@ -1,167 +1,110 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- reset css -->
-    <link href="assets/css/reset.css" type="text/css" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-        crossorigin="anonymous">
-        <!-- my css -->
-    <link href="assets/css/style.css" type="text/css" rel="stylesheet">
-    <!-- google fonts -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>90s Movie Phrase Game</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Emilys+Candy|Monoton" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Chango" rel="stylesheet">
-   
-    <title>Guess the 90's Movie Phrase</title>
 </head>
 
 <body>
     <div class="container">
-        <!-- header -->
-            <div class="col-md-12 gameplay-column">
-                <h1>Guess the 90"s Movie Phrase</h1>
-            </div>
-        <div class="row">
-            <!-- left side instructions/stats -->
-            <div class="col-md-6 gameplay-column" id= "instructions">
-                <div id="pressKeyTryAgain"/div>
-                <h2>Press Any Key to Start!</h2>
-                <h3>Press A-Z or  '  to Make a Guess!</h3>
-                <h4>Wins:</h4>
-                <div id="totalWins"></div>
-                <h4>Guesses Remaining:</h4>
-                <div id="remainingGuesses"></div>
-                <h4>Letters Guessed:</h4>
-                <div id="answerArray"></div>
-            </div>
-            <!-- right side game play -->
-            <div class="col-md-6 gameplay-column" id="gamePlay"> 
-                <h4>Current Word</h4>
-                <div id="guessingWord"></div>
-                <h3>hint: Press the Space Bar</h3>  
+        <div class="container-fluid header-screen">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <H1>90s Movie Phrase Game</H1>
+                </div>
             </div>
         </div>
-        
+        <div class="container-fluid instruction-screen">
+            <div class="row">
+                <div class="col-11 offset-md-1 text-center">
+                    <h2>hint: Phrases use may use space and ' keys </h2> 
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid game-screen">
+            <div class="row">
+                <div class="col-md-12 align-center">
+                    <h4>
+                        Wins:
+                        <strong>
+                            <span id="win-count">
+                            </span>
+                        </strong>
+                    </h4>
+                    <h4>
+                        Losses:
+                        <strong>
+                            <span id="loss-count">
+                            </span>
+                        </strong>
+                    </h4>
+                    
+                    <h4>
+                        Guesses Left:
+                        <strong>
+                            <span id="remaining-guess-count">
+                            </span>
+                        </strong>
+                    </h4>
+                    <h4>
+                        Your Guesses so far:
+                        <strong>
+                            <span id="used-guesses">
+                            </span>
+                        </strong>
+                    </h4>
+                    <h4 id="current">
+                        Current Word:
+                        <strong>
+                            <span id="current-word"></span>
+                        </strong>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Stuff -->
+    <div class="container">
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
-<script>
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <H4>World Cup Country Guess Game</H4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
 
-//phrase array
-var words = ["in west philadelphia born and raised", "there's no crying in baseball", "you're killin me smalls", "keep the change ya filthy animal", "and this one time at band camp",
-    "to infinity and beyond", "stop looking at me swan", "i see dead people", "i totally paused", "you are a sad strange little man and you have my pity", "you do not talk about fight club",
-    "what's in the box", "Sell crazy somewhere else we're all stocked up here"]
-    console.log("word:" + words)      
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <span id="model-text"></span>
+                    </div>
 
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
 
+                </div>
+            </div>
+        </div>
 
-var currentWordIndex,                   //current word in the array
-    guessingWord = [],                 //guessing word
-    remainingGuesses = 10,              // available gueses
-    wins = 0,                           // total wins
-    startGame = false,                  // initiate game/restart game
-    answerArray = [];                   //letters guessed
-   
+    </div>
 
-//select phrase
-randomWord = words[Math.floor(Math.random() * (words.length))];
-    console.log("random word: " + randomWord)
+    <!-- -->
 
-//create variable that uses split to break word into indiviual letters
-//create variable that counts the number of letters in the word
-//loop the number of letters variable and push the ("_") to an array
-//
-var splitRandomWord = randomWord.split("");
-var countRandomWord = splitRandomWord.length;
-    for (i = 0; i < countRandomWord; i++) {
-        guessingWord.push("_")
-    }
-    console.log(countRandomWord + "countRandomWord");
-    console.log(guessingWord + "guessingWord");
-
-
-
-//  Updates the display on the HTML Page
-function updateDisplay() {
-    };
-
- document.onkeyup = function (event) {
-
-
-        //user imput
-        var userImput = event.key.toLowerCase();
-        console.log(userImput)
- 
-        answerArray.push(userImput);
-           
-        console.log("answer array " + answerArray);
-   
-        // game loop
-        if (splitRandomWord.indexOf(userImput) !== -1){ 
-            var index = splitRandomWord.indexOf(userImput);
-            guessingWord[index] = userImput; 
-            console.log(guessingWord + "guessingWord ")
-        } else if (answerArray != guessingWord){
-            remainingGuesses += -1
-        }
-        console.log("remainingGuesses " + remainingGuesses);
-
-
-        document.getElementById("guessingWord").innerHTML = guessingWord.join(" ");
-        console.log("answerArray " + answerArray);
-        document.getElementById("remainingGuesses").innerText = remainingGuesses;
-        console.log("remaining guesses" + remainingGuesses);
-        document.getElementById("answerArray").innerText = answerArray.join("-")
-        console.log("answerarray " + answerArray);
-
-        // winning the game
-        function checkWin() {
-            if (guessingWord.indexOf("_") === -1) {
-                wins++;
-                hasFinished = true;
-                }
-            };
-
-        // losing the game
-        function checkLoss() {
-            if (remainingGuesses <= 0) {
-                hasFinished = true;
-                }
-            }
-
-        // Event listener
-        document.onkeydown = function (event) {
-            // reset game.
-            if (startGame) {
-            resetGame();
-            startGame = false;
-            } else {
-            // press any key
-            if (event.keyCode >= 65 && event.keyCode <= 90) {
-            // makeGuess(event.key.toLowerCase());
-                updateDisplay();
-                checkWin();
-                checkLoss();
-            }
-            }
-        }
-}
-
-
-</script>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-        crossorigin="anonymous"></script>
-    <!-- javascript -->
-    <!-- <script src="../javascript/javascript.js" type="text/javascript"></script> -->
+    <script src="assets/javascript/game.js"></script>
 </body>
 
 </html>
